@@ -13,6 +13,7 @@ export class LeavesComponent {
 
   leaves: any[] = [];
   users: any[] = [];
+  all: any[] = [];
 
   constructor(public auth: AuthService,
     private _snackBar: MatSnackBar,
@@ -24,6 +25,7 @@ export class LeavesComponent {
     try {
       const res: any = await this.api.get('leaveManagement/leaves', true).toPromise();
       this.leaves = res?.data;
+      this.all = this.leaves;
     } catch (e) {
       this._snackBar.open(e?.error.message)
     }
@@ -33,6 +35,7 @@ export class LeavesComponent {
     try {
       const res: any = await this.api.get('leaveManagement/users', true).toPromise();
       this.users = res?.data;
+
     } catch (e) {
       this._snackBar.open(e?.error.message)
     }
@@ -48,5 +51,13 @@ export class LeavesComponent {
   getDates(item) {
     let date = item.dates.map(_ => _.date);
     date.join(",");
+  }
+
+  setType(event) {
+    if (event.value === "null") {
+      this.leaves = this.all;
+    } else {
+      this.leaves = this.all.filter(_ => _.user_id === event.value._id)
+    }
   }
 }

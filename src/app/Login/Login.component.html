@@ -3,14 +3,14 @@
     <h1>Login</h1>
     <form [formGroup]="loginForm">
 
-      <mat-form-field>
+     <mat-form-field appearance="outline">
         <mat-label>E-Mail</mat-label>
         <input formControlName="email" matInput>
         <mat-error *ngIf="loginForm.get('email').hasError('required')">Please enter email </mat-error>
         <mat-error *ngIf="loginForm.get('email').hasError('pattern')">Please enter valid email </mat-error>
       </mat-form-field>
 
-      <mat-form-field>
+     <mat-form-field appearance="outline">
         <mat-label>Password</mat-label>
         <input type="password" formControlName="password" matInput>
         <mat-error *ngIf="loginForm.get('password').hasError('required')">Please enter password </mat-error>

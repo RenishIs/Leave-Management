@@ -37,3 +37,9 @@ header {
     display: flex;
     justify-content: center;
 }
+
+#main {
+    display: inline-flex;
+    flex-direction: column;
+    width: 100%;
+}
