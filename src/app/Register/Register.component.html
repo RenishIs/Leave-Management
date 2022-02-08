@@ -1,0 +1,36 @@
+<div class="main">
+  <div class="panel">
+    <h1>Register</h1>
+    <form [formGroup]="loginForm">
+
+      <mat-form-field>
+        <mat-label>First Name</mat-label>
+        <input formControlName="firstName" matInput>
+        <mat-error *ngIf="loginForm.get('firstName').hasError('required')">Please enter firstName </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Last Name</mat-label>
+        <input formControlName="lastName" matInput>
+        <mat-error *ngIf="loginForm.get('lastName').hasError('required')">Please enter lastName </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>E-Mail</mat-label>
+        <input formControlName="email" matInput>
+        <mat-error *ngIf="loginForm.get('email').hasError('required')">Please enter email </mat-error>
+        <mat-error *ngIf="loginForm.get('email').hasError('pattern')">Please enter valid email </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Password</mat-label>
+        <input type="password" formControlName="password" matInput>
+        <mat-error *ngIf="loginForm.get('password').hasError('required')">Please enter password </mat-error>
+      </mat-form-field>
+
+      <button type="button" (click)="register()" color="primary" mat-raised-button type="button">
+        Register
+      </button>
+    </form>
+  </div>
+</div>

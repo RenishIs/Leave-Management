@@ -1,0 +1,73 @@
+header {
+    width: 100%;
+    min-width: 320px;
+    background-color: #fff;
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #e4e0dd;
+    box-sizing: border-box;
+    padding: 0px 24px;
+    grid-area: header;
+    overflow: hidden;
+
+    div {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+
+        h1 {
+            margin-bottom: 0;
+        }
+
+        #menu {
+            width: auto;
+
+            a {
+                color: blue;
+                text-decoration: underline;
+                margin: 0 !important;
+            }
+        }
+    }
+}
+
+.main {
+    height: calc(100% - 80px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+mat-form-field {
+    margin-bottom: 10px;
+}
+
+a {
+    margin: 10px;
+}
+
+.panel {
+    width: 60%;
+}
+
+#action {
+    button {
+        margin-right: 10px;
+    }
+}
+
+.mat-calendar-body-cell.selected {
+    background-color: #d6caed !important;
+    border-radius: 50%
+}
+
+.drop-calendar {
+    width: 30rem
+}

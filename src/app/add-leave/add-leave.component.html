@@ -1,0 +1,75 @@
+<header>
+  <div>
+    <div id="menu">
+      <h1>AMS</h1>
+      <a mat-button routerLink="/home">Home</a>
+      <a mat-button routerLink="/users" *ngIf="user&& user?.email === 'hr@albiorixtech.com'">Users</a>
+      <a mat-button routerLink="/leaves" *ngIf="user&& user?.email === 'hr@albiorixtech.com'">Leaves</a>
+    </div>
+    <button type="button" color="primary" mat-raised-button type="button" (click)="auth.signOut()">
+      Logout
+    </button>
+  </div>
+</header>
+
+<div class="main">
+  <div class="panel">
+    <h1>Add leave</h1>
+    <form [formGroup]="loginForm">
+      <button mat-icon-button [matMenuTriggerFor]="appMenu">
+        Select Leave dates
+      </button>
+      <mat-menu #appMenu="matMenu">
+        <div (click)="$event.stopPropagation()">
+          <mat-calendar #calendar [dateFilter]="holidayFilter" [minDate]="maxDate"
+            (selectedChange)="select($event,calendar)" [dateClass]="isSelected">
+          </mat-calendar>
+        </div>
+      </mat-menu>
+      <div class="table tableStriped">
+        <table *ngIf="daysSelected && daysSelected?.length > 0">
+          <thead>
+            <tr>
+              <td>Date</td>
+              <td>Full Leave?</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of this.daysSelected;let i = index">
+              <td>
+                {{item?.date}}
+              </td>
+              <td>
+                <mat-select
+                  *ngIf="(i === 0 && i !== (this.daysSelected.length-1)) ||(i !== 0 && i ===  (this.daysSelected.length-1))"
+                  [(value)]="item.isFull" (selectionChange)="setType($event,item)">
+                  <mat-option value="true">
+                    Full day
+                  </mat-option>
+                  <mat-option value="false">
+                    Half day
+                  </mat-option>
+                </mat-select>
+
+                <span *ngIf="i !== 0 && i !== (this.daysSelected.length -1)">Full Day </span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <mat-form-field>
+        <mat-label>reason</mat-label>
+        <textarea matInput formControlName="reason"></textarea>
+        <mat-error *ngIf="loginForm.get('reason').hasError('required')">Please enter Reason </mat-error>
+      </mat-form-field>
+      <div id="action">
+        <button type="button" (click)="login()" color="primary" mat-raised-button type="button">
+          Add Leave
+        </button>
+        <button type="button" (click)="login()" color="secondary" mat-raised-button type="button">
+          Cancel
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

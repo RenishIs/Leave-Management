@@ -1,0 +1,38 @@
+<header>
+  <div>
+    <div id="menu">
+      <h1>AMS</h1>
+      <a mat-button routerLink="/home" >Home</a>
+      <a mat-button routerLink="/users" *ngIf="user&& user?.email === 'hr@albiorixtech.com'">Users</a>
+      <a mat-button routerLink="/leaves" *ngIf="user&& user?.email === 'hr@albiorixtech.com'">Leaves</a>
+      
+    </div>
+    <button type="button" color="primary" mat-raised-button type="button" (click)="auth.signOut()">
+      Logout
+    </button>
+  </div>
+</header>
+<div class="table tableStriped">
+  <table>
+    <thead>
+      <tr>
+        <th>User</th>
+        <th>Date</th>
+        <th>Reason</th>
+        <th>Total Days</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of leaves">
+        <td>{{ getUserName(item?.user_id)}}</td>
+        <td>
+          <ul>
+            <li *ngFor="let item of item?.dates">{{item.date}} - {{item?.isFull?'Full leave': 'Half Leave'}}</li>
+          </ul>
+        </td>
+        <td>{{item?.reason}}</td>
+        <td>{{item?.noOfDays}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
