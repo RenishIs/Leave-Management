@@ -2,6 +2,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 import { ApiInterfaceService } from '../services/api-interface.service';
 import { AuthService } from '../services/auth.service';
 
@@ -62,7 +63,7 @@ export class AddLeaveComponent implements OnInit {
         this.router.navigateByUrl('/home')
       } catch (error) {
         console.log('error: ', error);
-        this._snackBar.open(error.message);
+        Swal.fire('Hi',error?.error.message, 'error')
       }
     }
   }

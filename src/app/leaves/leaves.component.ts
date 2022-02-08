@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import Swal from 'sweetalert2';
 import { ApiInterfaceService } from '../services/api-interface.service';
 import { AuthService } from '../services/auth.service';
 
@@ -27,7 +28,7 @@ export class LeavesComponent {
       this.leaves = res?.data;
       this.all = this.leaves;
     } catch (e) {
-      this._snackBar.open(e?.error.message)
+      Swal.fire('Hi',e?.error.message, 'error')
     }
 
   }
@@ -37,7 +38,7 @@ export class LeavesComponent {
       this.users = res?.data;
 
     } catch (e) {
-      this._snackBar.open(e?.error.message)
+      Swal.fire('Hi',e?.error.message, 'error')
     }
 
   }
