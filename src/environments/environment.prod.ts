@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://shielded-oasis-92105.herokuapp.com/'
+  apiUrl: 'https://secret-atoll-67413.herokuapp.com/'
 };
