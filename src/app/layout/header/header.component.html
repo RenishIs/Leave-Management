@@ -1,0 +1,14 @@
+<header *ngIf="user">
+  <div>
+    <div id="menu">
+      <h1>AMS</h1>
+      <a mat-button routerLink="/home">Home</a>
+      <a mat-button routerLink="/users" *ngIf="checkRole">Users</a>
+      <a mat-button routerLink="/leaves" *ngIf="checkRole">Leaves</a>
+      <a mat-button routerLink="/interview" *ngIf="checkRole">Interview</a>
+    </div>
+    <button type="button" color="primary" mat-raised-button type="button" (click)="auth.signOut(); auth.localStorageBehaviour.next(this.auth.getUser());">
+      Logout
+    </button>
+  </div>
+</header>

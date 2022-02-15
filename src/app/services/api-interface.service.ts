@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { StoreService } from './storage.service';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -12,15 +13,15 @@ export class ApiInterfaceService {
   }
 
   post(path: string, body: any, requireAuth = false, params?: any, ignoreURl = false, responseType = false, fullResponse = false) {
-    return this.http.post(ignoreURl ? path : "https://shielded-oasis-92105.herokuapp.com/" + path, body, { params, headers: this.generateHeaders(requireAuth) });
+    return this.http.post(ignoreURl ? path : `${environment.apiUrl}` + path, body, { params, headers: this.generateHeaders(requireAuth) });
   }
 
   put(path: string, body: any, requireAuth = false, params?: any, responseType = false) {
-    return this.http.put("https://shielded-oasis-92105.herokuapp.com/" + path, body, { params, headers: this.generateHeaders(requireAuth) });
+    return this.http.put(`${environment.apiUrl}` + path, body, { params, headers: this.generateHeaders(requireAuth) });
   }
 
   patch(path: string, body: any, requireAuth = false, params?: any) {
-    return this.http.patch("https://shielded-oasis-92105.herokuapp.com/" + path, body, { params, headers: this.generateHeaders(requireAuth) });
+    return this.http.patch(`${environment.apiUrl}` + path, body, { params, headers: this.generateHeaders(requireAuth) });
   }
 
 
@@ -37,18 +38,17 @@ export class ApiInterfaceService {
       withCredentials
     };
 
-    return this.http.get("https://shielded-oasis-92105.herokuapp.com/" + path, options);
+    return this.http.get(`${environment.apiUrl}` + path, options);
   }
 
 
   delete(path: string, requireAuth = false, params?: any, withCredentials?: boolean) {
-    return this.http.delete("https://shielded-oasis-92105.herokuapp.com/" + path, { params, headers: this.generateHeaders(requireAuth), withCredentials });
+    return this.http.delete(`${environment.apiUrl}` + path, { params, headers: this.generateHeaders(requireAuth), withCredentials });
   }
 
 
 
   generateHeaders(authHeaderRequired: boolean): HttpHeaders {
-    debugger
     let header = new HttpHeaders();
 
     if (authHeaderRequired) {

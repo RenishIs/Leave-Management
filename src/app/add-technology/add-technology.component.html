@@ -1,0 +1,15 @@
+<form [formGroup]="form">
+    <mat-form-field appearance="outline">
+        <mat-label>Technology Name</mat-label>
+        <input formControlName="technologyName" matInput>
+        <mat-error>Please enter technology name </mat-error>
+    </mat-form-field>
+</form>
+<div class="footer">
+    <button type="button" (click)="cancel()" color="primary" mat-raised-button type="button">
+        Cancel
+    </button>
+    <button type="button" (click)="save()" color="primary" mat-raised-button type="button">
+        Save
+    </button>
+</div>

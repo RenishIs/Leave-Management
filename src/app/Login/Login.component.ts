@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { AuthService } from '../services/auth.service';
@@ -17,7 +16,6 @@ export class LoginComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private auth: AuthService,
-    private _snackBar: MatSnackBar,
     private router: Router,
   ) {
     this.loginForm = this.formBuilder.group({
@@ -33,6 +31,7 @@ export class LoginComponent implements OnInit {
   async login() {
     try {
       await this.auth.signIn((this.loginForm.value.email)?.trim(), this.loginForm.value.password);
+      this.auth.localStorageBehaviour.next(this.auth.getUser());
       this.router.navigateByUrl('/')
     } catch (error) {
       console.log('error: ', error);

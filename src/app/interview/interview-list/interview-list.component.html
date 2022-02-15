@@ -1,0 +1,30 @@
+<div id="action">
+    <button type="button" (click)="addInterview()" color="primary" mat-raised-button type="button">
+        Add Interview
+    </button>
+</div>
+<div class="table tableStriped">
+    <table>
+        <thead>
+            <tr>
+                <th>Employee Name</th>
+                <th>Technology</th>
+                <th>Interviewer</th>
+                <th>Interview Round</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of []">
+                <td>
+                </td>
+                <td>
+                    {{item?.reason}}
+                </td>
+                <td>
+                    {{item?.noOfDays}}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

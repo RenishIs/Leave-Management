@@ -22,6 +22,13 @@ import { MatNativeDateModule, } from '@angular/material/core';
 import { MatMenuModule } from '@angular/material/menu';
 import { FormsModule } from '@angular/forms';
 import { TokenInterceptor } from './TokenInterceptor';
+import { HeaderComponent } from './layout/header/header.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { InterviewListComponent } from './interview/interview-list/interview-list.component';
+import { AddInterviewComponent } from './interview/add-interview/add-interview.component';
+import { MatIconModule } from '@angular/material/icon';
+import { AddTechnologyComponent } from './add-technology/add-technology.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,7 +37,11 @@ import { TokenInterceptor } from './TokenInterceptor';
     MembersAreaComponent,
     UsersComponent,
     LeavesComponent,
-    AddLeaveComponent
+    AddLeaveComponent,
+    InterviewListComponent,
+    HeaderComponent,
+    AddInterviewComponent,
+    AddTechnologyComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +57,9 @@ import { TokenInterceptor } from './TokenInterceptor';
     MatDatepickerModule,
     MatNativeDateModule,
     MatMenuModule,
-    FormsModule
+    FormsModule,
+    MatDialogModule,
+    MatIconModule,
   ],
   providers: [
     AuthGuard,

@@ -1,17 +1,3 @@
-<header>
-  <div>
-    <div id="menu">
-      <h1>AMS</h1>
-      <a mat-button routerLink="/home">Home</a>
-      <a mat-button routerLink="/users" *ngIf="user&& user?.email === 'hr@albiorixtech.com'">Users</a>
-      <a mat-button routerLink="/leaves" *ngIf="user&& user?.email === 'hr@albiorixtech.com'">Leaves</a>
-
-    </div>
-    <button type="button" color="primary" mat-raised-button type="button" (click)="auth.signOut()">
-      Logout
-    </button>
-  </div>
-</header>
 <div class="table tableStriped">
   <table>
     <thead>

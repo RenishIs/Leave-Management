@@ -1,10 +1,8 @@
 import { Injectable } from "@angular/core";
 import { StoreService } from "./storage.service";
-import { HttpClient } from "@angular/common/http";
-import { Router, ActivatedRoute } from "@angular/router";
-import { map, catchError } from "rxjs/operators";
-import { throwError } from "rxjs";
+import { Router } from "@angular/router";
 import { ApiInterfaceService } from "./api-interface.service";
+import { BehaviorSubject } from "rxjs";
 
 @Injectable({
   providedIn: "root",
@@ -23,11 +21,15 @@ export class AuthService {
   //Property of authservice user
   APP_USER = "ALBIORIX_USER";
 
+  /**
+   * 
+   * For check localStorage behaviour 
+   */
+  localStorageBehaviour = new BehaviorSubject(null);
+
   constructor(
     private storageService: StoreService,
-    private http: HttpClient,
     private router: Router,
-    private route: ActivatedRoute,
     private api: ApiInterfaceService
   ) {
 
@@ -35,7 +37,7 @@ export class AuthService {
 
   public async signIn(email, password): Promise<any> {
     try {
-      const res: any = await this.api.post('leaveManagement/login', { email, password }, false,).toPromise();
+      const res: any = await this.api.post('employee/login', { email, password }, false,).toPromise();
       this.setUserAndToken(res?.data?.token, res?.data, !!res?.data);
       return Promise.resolve(res);
     } catch (e) {
@@ -45,7 +47,7 @@ export class AuthService {
 
   async register(value: any): Promise<any> {
     try {
-      const res: any = await this.api.post('leaveManagement/register', value, false,).toPromise();
+      const res: any = await this.api.post('employee/signup', value, false,).toPromise();
       return Promise.resolve(res);
     } catch (e) {
       return Promise.reject(e?.error);
@@ -82,4 +84,6 @@ export class AuthService {
     const res = this.storageService.getItem(this.APP_USER);
     return res?.firstName + " " + res?.lastName;
   }
+
+
 }

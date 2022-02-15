@@ -14,3 +14,12 @@ input,
 mat-form-field {
     margin-bottom: 10px;
 }
+
+.technology {
+    display: flex;
+    justify-content: end;
+}
+.deleteTechnology {
+    display: flex;
+    justify-content: space-between;
+}
