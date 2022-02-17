@@ -19,6 +19,7 @@ export class RegisterComponent implements OnInit {
   loginForm: FormGroup;
   rolesArray: any[] = [];
   technologyArray: any[] = [];
+  interviewrId: any;
   constructor(
     private formBuilder: FormBuilder,
     private auth: AuthService,
@@ -32,7 +33,17 @@ export class RegisterComponent implements OnInit {
       password: ['', Validators.required],
       lastName: ['', Validators.required],
       firstName: ['', Validators.required],
-      technology: [[], Validators.required],
+      technology: [[]],
+      role: ['', Validators.required],
+    });
+
+    this.loginForm.get('role').valueChanges.subscribe(res => {
+        if (res == this.interviewrId) {
+          this.loginForm.get('technology').addValidators([Validators.required]);
+        } else {
+          this.loginForm.get('technology').clearValidators();
+        }
+        this.loginForm.get('technology').updateValueAndValidity();
     });
   }
 
@@ -44,6 +55,7 @@ export class RegisterComponent implements OnInit {
   getAllRoles() {
     this.api.get('employee/getAllRoles').subscribe((res: any) => {
       this.rolesArray = res.data;
+      this.interviewrId = this.rolesArray.find(x => x.role == 'interviewer')._id;
     });
   }
 
@@ -68,7 +80,7 @@ export class RegisterComponent implements OnInit {
       return;
     }
     try {
-      await this.auth.register({ ...this.loginForm.value, role: this.rolesArray.find(x => x.role == 'employee')._id });
+      await this.auth.register(this.loginForm.value);
       this.router.navigateByUrl('/')
     } catch (error) {
       console.log('error: ', error);
@@ -80,6 +92,7 @@ export class RegisterComponent implements OnInit {
     const dialogRef = this.dialog.open(AddTechnologyComponent, {
       width: 'auto',
       hasBackdrop: false,
+      id: "technology"
     });
 
     dialogRef.afterClosed().subscribe(result => {

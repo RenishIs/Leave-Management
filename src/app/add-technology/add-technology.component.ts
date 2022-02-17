@@ -41,7 +41,8 @@ export class AddTechnologyComponent implements OnInit {
   }
 
   cancel() {
-    this.dialog.closeAll();
+    const data = this.dialog.getDialogById("technology");
+    data.close();
   }
 
 }

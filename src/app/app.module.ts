@@ -28,6 +28,7 @@ import { InterviewListComponent } from './interview/interview-list/interview-lis
 import { AddInterviewComponent } from './interview/add-interview/add-interview.component';
 import { MatIconModule } from '@angular/material/icon';
 import { AddTechnologyComponent } from './add-technology/add-technology.component';
+import { NgxMatDatetimePickerModule, NgxMatNativeDateModule, NgxMatTimepickerModule } from '@angular-material-components/datetime-picker';
 
 @NgModule({
   declarations: [
@@ -60,6 +61,9 @@ import { AddTechnologyComponent } from './add-technology/add-technology.componen
     FormsModule,
     MatDialogModule,
     MatIconModule,
+    NgxMatTimepickerModule,
+    NgxMatDatetimePickerModule,
+    NgxMatNativeDateModule,
   ],
   providers: [
     AuthGuard,

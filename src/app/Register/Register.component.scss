@@ -13,13 +13,19 @@ form {
 input,
 mat-form-field {
     margin-bottom: 10px;
+    width: 100%;
 }
 
 .technology {
     display: flex;
-    justify-content: end;
+    justify-content: space-between;
+    align-items: baseline;
 }
 .deleteTechnology {
     display: flex;
     justify-content: space-between;
+}
+
+.panel {
+    width: 30%;
 }

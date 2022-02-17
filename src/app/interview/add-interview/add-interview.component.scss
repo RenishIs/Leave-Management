@@ -1,0 +1,18 @@
+.technology {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+.deleteTechnology {
+    display: flex;
+    justify-content: space-between;
+}
+.footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+mat-form-field {
+    width: 100%;
+}

@@ -22,29 +22,43 @@
         <mat-error *ngIf="loginForm.get('email').hasError('pattern')">Please enter valid email </mat-error>
       </mat-form-field>
 
-      <div class="technology">
-        <button type="button" mat-raised-button color="primary" (click)="addTechnology()">
-          <mat-icon aria-hidden="false" aria-label="Example home icon">add</mat-icon>
-        </button>
-      </div>
-      <div class="technology">
-        <mat-form-field appearance="outline">
-          <mat-label>Technology</mat-label>
-          <mat-select formControlName="technology" multiple>
-            <mat-option *ngFor="let item of technologyArray" [value]="item?._id">
-              <div class="deleteTechnology">
-                <div>
-                  {{item?.technologyName}}
-                </div>
-                <div (click)="deleteTechnology(item?._id)">
-                  <mat-icon aria-hidden="false" aria-label="Example home icon">delete</mat-icon>
-                </div>
-              </div>
-            </mat-option>
-          </mat-select>
-          <mat-error>Please enter technology </mat-error>
-        </mat-form-field>
-      </div>
+      <mat-form-field appearance="outline">
+        <mat-label>Role</mat-label>
+        <mat-select formControlName="role">
+          <mat-option *ngFor="let item of rolesArray" [value]="item?._id">
+            {{item?.role}}
+          </mat-option>
+        </mat-select>
+        <mat-error>Please enter role </mat-error>
+      </mat-form-field>
+
+      <ng-container *ngIf="interviewrId == loginForm.value.role">
+        <div class="technology">
+          <div>
+            <mat-form-field appearance="outline">
+              <mat-label>Technology</mat-label>
+              <mat-select formControlName="technology" multiple>
+                <mat-option *ngFor="let item of technologyArray" [value]="item?._id">
+                  <div class="deleteTechnology">
+                    <div>
+                      {{item?.technologyName}}
+                    </div>
+                    <div (click)="deleteTechnology(item?._id)">
+                      <mat-icon aria-hidden="false" aria-label="Example home icon">delete</mat-icon>
+                    </div>
+                  </div>
+                </mat-option>
+              </mat-select>
+              <mat-error>Please enter technology </mat-error>
+            </mat-form-field>
+          </div>
+          <div>
+            <button type="button" mat-raised-button color="primary" (click)="addTechnology()">
+              <mat-icon aria-hidden="false" aria-label="Example home icon">add</mat-icon>
+            </button>
+          </div>
+        </div>
+      </ng-container>
 
       <mat-form-field appearance="outline">
         <mat-label>Password</mat-label>

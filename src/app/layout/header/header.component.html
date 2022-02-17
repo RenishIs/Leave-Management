@@ -5,7 +5,7 @@
       <a mat-button routerLink="/home">Home</a>
       <a mat-button routerLink="/users" *ngIf="checkRole">Users</a>
       <a mat-button routerLink="/leaves" *ngIf="checkRole">Leaves</a>
-      <a mat-button routerLink="/interview" *ngIf="checkRole">Interview</a>
+      <a mat-button routerLink="/interview" *ngIf="checkRole || user?.role == 'interviewer'">Interview</a>
     </div>
     <button type="button" color="primary" mat-raised-button type="button" (click)="auth.signOut(); auth.localStorageBehaviour.next(this.auth.getUser());">
       Logout
